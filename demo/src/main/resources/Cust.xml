@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+          http://www.springframework.org/schema/beans
+          https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   
+    <bean id="cust" class="DI.Customer">
+   
+    <constructor-arg  value="21" type="int" index="0"/>
+     <constructor-arg  value="Afsheen"  index="1" type="java.lang.String"/>
+      <constructor-arg  value="9898947591" index="2" type="java.lang.String" />
+      </bean>
+      
+      <bean id="ord" class="DI.Order">
+       <constructor-arg  value="1" type="int" index="0"/>
+     <constructor-arg  value="Cloths"  index="1" type="java.lang.String"/>
+      <constructor-arg  ref="cust" index="2"/>
+      
+      </bean>
+      
+   </beans>
