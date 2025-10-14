@@ -1,4 +1,4 @@
-package AnnotationConfig;
+package annotation.Component.Autowired;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

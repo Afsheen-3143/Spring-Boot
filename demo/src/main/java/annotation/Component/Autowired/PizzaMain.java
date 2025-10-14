@@ -1,4 +1,4 @@
-package AnnotationConfig;
+package annotation.Component.Autowired;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
