@@ -20,7 +20,7 @@ public class Doctor {
     private List<Department> departments;
 
   
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "doctor_patient",
         joinColumns = @JoinColumn(name = "doctor_id"),
@@ -28,6 +28,7 @@ public class Doctor {
     )
     private List<Patient> patients;
 
+ 
     // Getters and Setters
     public int getDoctorId() {
         return doctorId;

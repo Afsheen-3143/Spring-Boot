@@ -52,4 +52,9 @@ public class PatientController {
         patientService.deleteAll();
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/doctors/{doctorId}/patients")
+    public List<Patient> getPatientsByDoctor(@PathVariable int doctorId) {
+        return patientService.getPatientsByDoctorId(doctorId);
+    }
+
 }

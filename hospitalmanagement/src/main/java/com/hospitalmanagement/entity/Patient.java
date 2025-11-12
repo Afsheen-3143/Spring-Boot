@@ -3,7 +3,10 @@ package com.hospitalmanagement.entity;
 
 
 	import jakarta.persistence.*;
-	import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 	@Entity
@@ -21,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 	    @JsonManagedReference
 	    private Address address;
 
-	    @ManyToMany(mappedBy = "patients")
+	    @ManyToMany(mappedBy = "patients",cascade = CascadeType.ALL)
 	    @JsonBackReference
-	    private java.util.List<Doctor> doctors;
+	    private List<Doctor> doctors;
 
 	    public int getPatientId() {
 	        return patientId;

@@ -50,7 +50,7 @@ public class PatientService {
         return patientRepo.save(patient);
     }
 
-    // 📋 Get All Patients
+    // Get All Patients
     public List<Patient> getAll() {
         return patientRepo.findAll();
     }
@@ -109,5 +109,13 @@ public class PatientService {
 //    //  Delete All Patients
     public void deleteAll() {
         patientRepo.deleteAll();
+    }
+    // Get all patients for a specific doctor
+    public List<Patient> getPatientsByDoctorId(int doctorId) {
+        List<Patient> patients = patientRepo.findAllByDoctors_DoctorId(doctorId);
+        if (patients.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No patients found for Doctor ID: " + doctorId);
+        }
+        return patients;
     }
 }
