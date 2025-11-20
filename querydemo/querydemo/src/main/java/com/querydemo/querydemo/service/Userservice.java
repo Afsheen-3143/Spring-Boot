@@ -33,7 +33,7 @@ public class Userservice {
 	        existing.getOrders().addAll(updated.getOrders());
 	    }
 
-	    return repo.save(existing);  // IMPORTANT: save existing, not updated!
+	    return repo.save(existing); 
 	}
 
 	public User getById(int id) {
@@ -60,4 +60,36 @@ public class Userservice {
 	public List<User> getByrole(String role) {
 		return repo.findByRole(role);
 	}
+	public List<User>getNameByIgnoreCase(String Name){
+		return repo.findByNameIgnoreCase(Name);
+	}
+	 public List<User> searchNameIgnoreCase(String keyword) {
+	        return repo.searchNameIgnoreCase(keyword);
+	    }
+	public List<User>getEmailByIgnoreCase(String mail){
+		return repo.findByEmailIgnoreCase(mail);
+	}
+	public List<User>getRoleByIgnoreCase(String Role){
+		return repo.findByRoleIgnoreCase(Role);
+	}
+	// Sort users by name ASC
+    public List<User> sortUsersByNameAsc() {
+        return repo.sortUsersByNameAsc();
+    }
+
+    // Count total users
+    public long countUsers() {
+        return repo.countByuser();
+    }
+
+    // Fetch user with orders using JOIN FETCH
+    public User getUserWithOrders(int id) {
+        return repo.getUserwithOrders(id);
+    }
+
+    // Get user + order count
+    public List<Object[]> getUserOrderCounts() {
+        return repo.getUserOrderCounts();
+    }
+
 }

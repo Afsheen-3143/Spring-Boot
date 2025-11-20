@@ -3,6 +3,8 @@ package com.querydemo.querydemo.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.querydemo.querydemo.entity.User;
 
@@ -13,5 +15,40 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     List<User> findByName(String name);
 
     List<User> findByRole(String role);
+    
+    // Case-Insensitive exact name match
+    @Query("select u from User u where lower(u.name)=lower(:name)")
+    List<User>findByNameIgnoreCase(@Param("name") String name);
+ 
+
+    // Case-Insensitive contains search (partial)
+    @Query("select u from User u where lower(u.name) like lower(concat ('%',:keyword,'%'))")
+    List<User>searchNameIgnoreCase(@Param("keyword")String keyword);
+      // Case-Insensitive Email Search
+    @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
+    List<User> findByEmailIgnoreCase(@Param("email") String email);
+
+    // Get users by role ignoring case
+    @Query("SELECT u FROM User u WHERE LOWER(u.role) = LOWER(:role)")
+    List<User> findByRoleIgnoreCase(@Param("role") String role);
+    
+//    sort users by name ASC
+    @Query("select u from User u order by u.name ASC")
+    List<User>sortUsersByNameAsc();
+    
+//    count users
+    @Query("select count(u) from User u")
+    long countByuser();
+    
+//    Fetch user with orders (JOIN FETCH)
+    @Query("select u from User u JOIN FETCH u.orders where u.id=:id")
+    User getUserwithOrders(int id);
+    
+//    Get User + Order count
+    @Query("SELECT u.name, COUNT(o) FROM User u LEFT JOIN u.orders o GROUP BY u.name")
+    List<Object[]> getUserOrderCounts();
+
 
 }
+
+

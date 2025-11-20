@@ -68,4 +68,44 @@ public class UserController {
     public ResponseEntity<List<User>> findByRole(@PathVariable String role) {
         return new ResponseEntity<>(service.getByrole(role), HttpStatus.OK);
     }
+    
+    @GetMapping("/namelower/{name}")
+    public ResponseEntity<List<User>> findByNameIgnoranceCase(@PathVariable String name){
+    	return new ResponseEntity<>(service.getNameByIgnoreCase(name),HttpStatus.OK);
+    }
+    @GetMapping("/search/{keyword}")
+    public List<User> searchNameIgnoreCase(@PathVariable String keyword) {
+        return service.searchNameIgnoreCase(keyword);
+    }
+    @GetMapping("/emaillower/{email}")
+    public ResponseEntity<List<User>> findByEmailIgnoranceCase(@PathVariable String email){
+    	return new ResponseEntity<>(service.getEmailByIgnoreCase(email),HttpStatus.OK);
+    }
+    @GetMapping("/rolelower/{role}")
+    public ResponseEntity<List<User>> findByRoleIgnoranceCase(@PathVariable String role){
+    	return new ResponseEntity<>(service.getRoleByIgnoreCase(role),HttpStatus.OK);
+    }
+   
+    @GetMapping("/sort/name")
+    public ResponseEntity<List<User>> sortUsersByNameAsc() {
+        return ResponseEntity.ok(service.sortUsersByNameAsc());
+    }
+
+    // Count total users
+    @GetMapping("/count")
+    public ResponseEntity<Long> countUsers() {
+        return ResponseEntity.ok(service.countUsers());
+    }
+
+    // Fetch user with orders
+    @GetMapping("/with-orders/{id}")
+    public ResponseEntity<User> getUserWithOrders(@PathVariable int id) {
+        return ResponseEntity.ok(service.getUserWithOrders(id));
+    }
+
+    // Get user with order counts
+    @GetMapping("/order-counts")
+    public ResponseEntity<List<Object[]>> getUserOrderCounts() {
+        return ResponseEntity.ok(service.getUserOrderCounts());
+    }
 }
