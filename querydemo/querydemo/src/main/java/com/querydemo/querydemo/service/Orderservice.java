@@ -67,4 +67,17 @@ public class Orderservice {
     public List<Order> getByAmount(Double amount) {
         return orderepo.findByAmountGreaterThan(amount);
     }
+    
+    public List<Order> getOrderBydesc() {
+    	return orderepo.sortOrdersByNamedesc();
+    }
+    public Double getTotalAmount(int id) {
+    	return orderepo.TotalAmountByUserId(id);
+    }
+    public List<Order> getOrderswithUsers(){
+    	return orderepo.getOrdersWithUsers();
+    }
+    public Double getAvgamount() {
+    	return orderepo.averageAmount();
+    }
 }

@@ -67,4 +67,24 @@ public class OrderController {
     public ResponseEntity<List<Order>> getOrdersByAmount(@PathVariable Double amount) {
         return ResponseEntity.ok(orderservice.getByAmount(amount));
     }
+    
+    @GetMapping("/sort")
+    public ResponseEntity<List<Order>> getSortedOrdersByAmountDesc(){
+    	return ResponseEntity.ok(orderservice.getOrderBydesc());
+    }
+    
+    @GetMapping("/total/{userId}")
+    public Double getTotalAmount(@PathVariable int userId) {
+        return orderservice.getTotalAmount(userId);
+    }
+    
+    @GetMapping("/orderwithusers")
+    public ResponseEntity<List<Order>>getOrderwithUser(){
+    	return ResponseEntity.ok(orderservice.getOrderswithUsers());
+    }
+    
+    @GetMapping("/avgamount")
+    public ResponseEntity<Double>getAvgamount(){
+    	return ResponseEntity.ok(orderservice.getAvgamount());
+    }
 }
