@@ -108,4 +108,8 @@ public class UserController {
     public ResponseEntity<List<Object[]>> getUserOrderCounts() {
         return ResponseEntity.ok(service.getUserOrderCounts());
     }
+    @GetMapping("/users-with-orders")
+    public ResponseEntity<List<Object[]>> getUsersWithOrders() {
+        return ResponseEntity.ok(service.getAllUsersWithOrders());
+    }
 }

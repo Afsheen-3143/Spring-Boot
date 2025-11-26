@@ -23,7 +23,7 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JsonManagedReference
+    @JsonManagedReference
     private List<Order> orders = new ArrayList<>();
 
 	public Long getId() {

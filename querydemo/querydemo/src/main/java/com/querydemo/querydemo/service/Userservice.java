@@ -87,9 +87,12 @@ public class Userservice {
         return repo.getUserwithOrders(id);
     }
 
-    // Get user + order count
+    // Get user order count
     public List<Object[]> getUserOrderCounts() {
         return repo.getUserOrderCounts();
+    }
+    public List<Object[]> getAllUsersWithOrders() {
+        return repo.getOrderwithUsers();
     }
 
 }

@@ -2,7 +2,11 @@ package com.querydemo.querydemo.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -79,5 +83,39 @@ public class Orderservice {
     }
     public Double getAvgamount() {
     	return orderepo.averageAmount();
+    }
+//    pagination
+    public Page<Order> getOrders(int page,int size){
+    	Pageable pageable=PageRequest.of(page, size);
+    	return orderepo.findAll(pageable);
+    }
+    //  Get orders with users (native)
+    public List<Object[]> getOrdersWithUsers() {
+        return orderepo.getOrderwithUsersNative();
+    }
+
+    // Count total orders
+    public Long countOrders() {
+        return orderepo.countTotalOrders();
+    }
+
+    // Sum of order amounts
+    public Long getTotalOrderAmount() {
+        return orderepo.sumOfOrders();
+    }
+
+    //  Max order amount
+    public Long getMaxOrderAmount() {
+        return orderepo.MaxAmount();
+    }
+
+    //  Total order amount per user
+    public List<Object[]> getTotalAmountPerUser() {
+        return orderepo.getTotalAmountPerUserNative();
+    }
+
+    //  Orders with amount > 1000
+    public List<Object[]> getOrdersGreaterThan1000() {
+        return orderepo.getOrdersGreaterThan1000();
     }
 }

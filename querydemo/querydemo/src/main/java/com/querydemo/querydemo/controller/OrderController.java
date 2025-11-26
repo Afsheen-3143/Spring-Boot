@@ -3,6 +3,7 @@ package com.querydemo.querydemo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,4 +88,48 @@ public class OrderController {
     public ResponseEntity<Double>getAvgamount(){
     	return ResponseEntity.ok(orderservice.getAvgamount());
     }
-}
+    
+    @GetMapping("/page")
+    public ResponseEntity<Page<Order>> getPages(
+            @RequestParam int page,
+            @RequestParam int size) {
+
+        return ResponseEntity.ok(orderservice.getOrders(page, size));
+    }
+    //  Orders with User Details (native join)
+    @GetMapping("/with-users")
+    public ResponseEntity<List<Object[]>> getOrdersWithUsers() {
+        return ResponseEntity.ok(orderservice.getOrdersWithUsers());
+    }
+
+    //  Count Orders
+    @GetMapping("/count")
+    public ResponseEntity<Long> countOrders() {
+        return ResponseEntity.ok(orderservice.countOrders());
+    }
+
+    //  Sum of Order Amounts
+    @GetMapping("/sum")
+    public ResponseEntity<Long> getTotalOrderAmount() {
+        return ResponseEntity.ok(orderservice.getTotalOrderAmount());
+    }
+
+    //  Max Order Amount
+    @GetMapping("/max")
+    public ResponseEntity<Long> getMaxOrderAmount() {
+        return ResponseEntity.ok(orderservice.getMaxOrderAmount());
+    }
+
+    //  Total amount per user
+    @GetMapping("/total-per-user")
+    public ResponseEntity<List<Object[]>> getTotalAmountPerUser() {
+        return ResponseEntity.ok(orderservice.getTotalAmountPerUser());
+    }
+
+    //  Orders > 1000
+    @GetMapping("/greater-1000")
+    public ResponseEntity<List<Object[]>> getOrdersGreaterThan1000() {
+        return ResponseEntity.ok(orderservice.getOrdersGreaterThan1000());
+    }
+    }
+

@@ -44,9 +44,16 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query("select u from User u JOIN FETCH u.orders where u.id=:id")
     User getUserwithOrders(int id);
     
-//    Get User + Order count
+//    Get User and Order count
     @Query("SELECT u.name, COUNT(o) FROM User u LEFT JOIN u.orders o GROUP BY u.name")
     List<Object[]> getUserOrderCounts();
+    
+//    Native Query
+//    Get orders with user info
+    @Query(value = "SELECT u.id AS user_id, u.name, u.role, o.id AS order_id, o.amount FROM user u LEFT JOIN orders o ON u.id = o.user_id",
+nativeQuery = true)
+List<Object[]> getOrderwithUsers();
+
 
 
 }
