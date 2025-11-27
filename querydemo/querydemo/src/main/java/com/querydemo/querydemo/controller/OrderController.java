@@ -126,10 +126,12 @@ public class OrderController {
         return ResponseEntity.ok(orderservice.getTotalAmountPerUser());
     }
 
-    //  Orders > 1000
+    //  Orders > 1000  
     @GetMapping("/greater-1000")
-    public ResponseEntity<List<Object[]>> getOrdersGreaterThan1000() {
+
+      public ResponseEntity<List<Object[]>> getOrdersGreaterThan1000() {
         return ResponseEntity.ok(orderservice.getOrdersGreaterThan1000());
     }
+
     }
 

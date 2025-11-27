@@ -112,4 +112,47 @@ public class UserController {
     public ResponseEntity<List<Object[]>> getUsersWithOrders() {
         return ResponseEntity.ok(service.getAllUsersWithOrders());
     }
+ // 1. Get user by email (JPQL)
+    @GetMapping("/jpql/email/{email}")
+    public List<User> getByEmailJPQL(@PathVariable String email) {
+        return service.getByEmailJPQL(email);
+    }
+
+    // 2. Get users by role (JPQL)
+    @GetMapping("/jpql/role/{role}")
+    public List<User> getByRoleJPQL(@PathVariable String role) {
+        return service.getByRoleJPQL(role);
+    }
+
+    // 3. Get users with NO orders (JPQL)
+    @GetMapping("/jpql/no-orders")
+    public List<User> getUsersWithNoOrdersJPQL() {
+        return service.getUsersWithNoOrdersJPQL();
+    }
+
+    // 4. Get users with order count (JPQL)
+    @GetMapping("/jpql/order-count")
+    public List<Object[]> getUserOrderCountJPQL() {
+        return service.getUserOrderCountJPQL();
+    }
+
+    // ---------------- NATIVE QUERIES ----------------
+
+    // 5. Get user order count (Native)
+    @GetMapping("/native/order-count")
+    public List<Object[]> getUserOrderCountNative() {
+        return service.getUserOrderCountNative();
+    }
+
+    // 6. Get users who have placed orders (Native)
+    @GetMapping("/native/with-orders")
+    public List<User> getUsersWithOrdersNative() {
+        return service.getUsersWithOrdersNative();
+    }
+
+    // 7. Get users with no orders (Native)
+    @GetMapping("/native/no-orders")
+    public List<User> getUsersWithNoOrdersNative() {
+        return service.getUsersWithNoOrdersNative();
+    }
 }

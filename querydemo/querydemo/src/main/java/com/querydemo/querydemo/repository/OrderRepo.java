@@ -59,4 +59,7 @@ List<Object[]> getTotalAmountPerUserNative();
 nativeQuery = true)
 List<Object[]> getOrdersGreaterThan1000();
 
+
+
+
 }

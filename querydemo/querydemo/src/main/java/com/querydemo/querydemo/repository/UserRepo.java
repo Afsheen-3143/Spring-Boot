@@ -54,6 +54,26 @@ public interface UserRepo extends JpaRepository<User,Integer>{
 nativeQuery = true)
 List<Object[]> getOrderwithUsers();
 
+//Named Queries
+List<User> findByEmailJPQL(String email);
+
+List<User> findByRoleJPQL(String role);
+
+@Query(name = "User.UserswithNoOrders")
+List<User>getUserwithNoOrdersJPQL();
+
+@Query(name="User.UserwithOrderCount")
+List<Object[]>getUserwithOrderCountJPQL();
+
+@Query(name="User.UserswithOrderCount")
+List<User>getUserWithOrderCountJPQL();
+
+@Query(name = "User.nativeUsersWithOrders", nativeQuery = true)
+List<User> getUsersWithOrdersNative();
+
+@Query(name = "User.nativeUserswithNoOrders", nativeQuery = true)
+List<User> getUsersWithNoOrdersNative();
+
 
 
 }

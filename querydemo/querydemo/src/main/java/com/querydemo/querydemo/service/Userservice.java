@@ -94,5 +94,34 @@ public class Userservice {
     public List<Object[]> getAllUsersWithOrders() {
         return repo.getOrderwithUsers();
     }
+   
+
+    public List<User> getByEmailJPQL(String email) {
+        return repo.findByEmailJPQL(email);
+    }
+
+    public List<User> getByRoleJPQL(String role) {
+        return repo.findByRoleJPQL(role);
+    }
+
+    public List<User> getUsersWithNoOrdersJPQL() {
+        return repo.getUserwithNoOrdersJPQL();
+    }
+
+    public List<Object[]> getUserOrderCountJPQL() {
+        return repo.getUserwithOrderCountJPQL();
+    }
+
+    public List<Object[]> getUserOrderCountNative() {
+        return repo.getUserwithOrderCountJPQL();
+    }
+
+    public List<User> getUsersWithOrdersNative() {
+        return repo.getUsersWithOrdersNative();
+    }
+
+    public List<User> getUsersWithNoOrdersNative() {
+        return repo.getUsersWithNoOrdersNative();
+    }
 
 }
